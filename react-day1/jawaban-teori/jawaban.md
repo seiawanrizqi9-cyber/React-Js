@@ -3,6 +3,7 @@
 ### Apa Perbedaan JSX dan HTML
 
 - HTML:
+
   - HTML tidak bisa langsung menulis javascript kecuali menggunakan tag (script)
   - Cara memanggil dalam html menggunakan class
 
@@ -41,16 +42,17 @@ function App() {
 
 ## Cara Kerjanya
 
-- React simpan Virtual DOM (versi ringan dari tampilan web).
-- Kalau ada state/data berubah → React bikin Virtual DOM baru.
-- React bandingkan Virtual DOM lama vs baru.
-- React hanya update bagian DOM asli yang berubah saja (bukan semuanya).
+- Render Awal: Ketika komponen React pertama kali di-render, React membuat representasi VDOM dari DOM yang sebenarnya.
+- Pembaruan: Ketika state atau props dari sebuah komponen berubah, React membuat tree VDOM yang baru.
+- Perbandingan (Diffing): React membandingkan tree VDOM yang baru dengan yang sebelumnya untuk mengidentifikasi perubahan. Algoritma diffing ini sangat efisien dalam menemukan perbedaan.
+- Pembaruan DOM Sebenarnya: React hanya memperbarui bagian-bagian DOM yang sebenarnya yang telah berubah, meminimalkan jumlah manipulasi DOM. Proses ini membuat pembaruan lebih cepat dan efisien.
 
 ## Soal 4
 
 ### Jelaskan Perbedaan Antara SPA & MPA
 
 - SPA:
+
   - SPA(Single Page Application) adalah aplikasi web yang hanya punya 1 halaman index
   - Saat pindah halaman, page tidak reload penuh & hanya bagian tertentu yang berubah
 
@@ -61,14 +63,17 @@ function App() {
 ### Kelebihan dan Kekurangan SPA & MPA
 
 - Kelebihan SPA:
+
   - Cepat & interaktif → hanya bagian tertentu yang berubah, tidak reload penuh.
   - Pengalaman pengguna mulus → mirip aplikasi mobile.
 
 - Kekurangan SPA:
+
   - SEO lebih sulit → mesin pencari susah membaca konten dinamis (butuh konfigurasi khusus).
   - Loading awal lebih berat → karena semua script diload sekali di awal.
 
 - Kelebihan MPA:
+
   - SEO lebih mudah → konten ada di server, langsung bisa diindeks.
   - Struktur jelas → tiap halaman berdiri sendiri, cocok untuk website besar (misalnya berita).
 
