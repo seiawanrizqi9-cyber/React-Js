@@ -44,7 +44,7 @@ function App() {
 
 - Render Awal: Ketika komponen React pertama kali di-render, React membuat representasi VDOM dari DOM yang sebenarnya.
 - Pembaruan: Ketika state atau props dari sebuah komponen berubah, React membuat tree VDOM yang baru.
-- Perbandingan (Diffing): React membandingkan tree VDOM yang baru dengan yang sebelumnya untuk mengidentifikasi perubahan. Algoritma diffing ini sangat efisien dalam menemukan perbedaan.
+- Perbandingan (Diffing): React membandingkan tree VDOM yang baru dengan yang sebelumnya untuk mengidentifikasi perubahan. Algoritma diffing ini sangat efisien dalam menemukan perbedaan
 - Pembaruan DOM Sebenarnya: React hanya memperbarui bagian-bagian DOM yang sebenarnya yang telah berubah, meminimalkan jumlah manipulasi DOM. Proses ini membuat pembaruan lebih cepat dan efisien.
 
 ## Soal 4
