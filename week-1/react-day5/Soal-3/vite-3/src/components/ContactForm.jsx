@@ -7,12 +7,12 @@ function ContactForm() {
     email: "",
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -21,15 +21,21 @@ function ContactForm() {
     alert(`Terima kasih, ${formData.firstName}! Data anda telah tersubmit.`);
   };
 
-  // Style objects
+  const wrapperStyle = {
+    display: "flex",
+    flexDirection: "column",
+    gap: "2rem",
+    maxWidth: "900px",
+    margin: "10px auto",
+    fontFamily: "Arial, sans-serif",
+  };
+
   const formStyle = {
-    maxWidth: "500px",
-    margin: "2rem auto",
-    padding: "2rem",
+    flex: 1,
+    padding: "20 px",
     border: "1px solid #ddd",
     borderRadius: "10px",
     boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-    fontFamily: "Arial, sans-serif",
     background: "#fff",
   };
 
@@ -51,13 +57,6 @@ function ContactForm() {
     color: "#555",
   };
 
-  const inputStyle = {
-    padding: "0.75rem",
-    border: "1px solid #ccc",
-    borderRadius: "5px",
-    fontSize: "1rem",
-  };
-
   const buttonStyle = {
     width: "100%",
     padding: "0.75rem",
@@ -70,9 +69,20 @@ function ContactForm() {
     marginTop: "1rem",
   };
 
-  const pStyle = {
-    marginTop: "1.5rem",
-    padding: "1rem",
+  const inputStyle = {
+    width: "100%",
+    padding: "0.75rem",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    fontSize: "1rem",
+    boxSizing: "border-box", // Pastikan padding tidak menambah lebar total
+  };
+
+  const resultStyle = {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    padding: "2rem",
     backgroundColor: "#f8f9fa",
     border: "1px dashed #a4a4a4ff",
     borderRadius: "5px",
@@ -82,46 +92,75 @@ function ContactForm() {
     lineHeight: "1.5",
   };
 
+  const resultItemStyle = {
+    display: "flex",
+    marginBottom: "0.5rem",
+  };
+
+  const resultLabelStyle = {
+    fontWeight: "bold",
+    minWidth: "120px", // Memberi lebar minimum agar sejajar
+    marginRight: "1rem",
+  };
+
+  const resultValueStyle = {
+    wordBreak: "break-all", // Memastikan teks panjang tidak overflow
+  };
+
   return (
-    <form onSubmit={handleSubmit} style={formStyle}>
-      <h2 style={h2Style}>Formulir Kontak</h2>
-      <div style={divStyle}>
-        <label style={labelStyle}>Nama Depan:</label>
-        <input
-          type="text"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          style={inputStyle}
-        />
+    <div style={wrapperStyle}>
+      <form onSubmit={handleSubmit} style={formStyle}>
+        <h2 style={h2Style}>Formulir Kontak</h2>
+        <div style={divStyle}>
+          <label style={labelStyle}>Nama Depan:</label>
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            style={inputStyle}
+          />
+        </div>
+        <div style={divStyle}>
+          <label style={labelStyle}>Nama Belakang:</label>
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            style={inputStyle}
+          />
+        </div>
+        <div style={divStyle}>
+          <label style={labelStyle}>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            style={inputStyle}
+          />
+        </div>
+        <button type="submit" style={buttonStyle}>
+          Submit
+        </button>
+      </form>
+      <div style={resultStyle}>
+        <strong>Current Data:</strong>
+        <div style={resultItemStyle}>
+          <span style={resultLabelStyle}>Nama Depan:</span>
+          <span style={resultValueStyle}>{formData.firstName}</span>
+        </div>
+        <div style={resultItemStyle}>
+          <span style={resultLabelStyle}>Nama Belakang:</span>
+          <span style={resultValueStyle}>{formData.lastName}</span>
+        </div>
+        <div style={resultItemStyle}>
+          <span style={resultLabelStyle}>Email:</span>
+          <span style={resultValueStyle}>{formData.email}</span>
+        </div>
       </div>
-      <div style={divStyle}>
-        <label style={labelStyle}>Nama Belakang:</label>
-        <input
-          type="text"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          style={inputStyle}
-        />
-      </div>
-      <div style={divStyle}>
-        <label style={labelStyle}>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          style={inputStyle}
-        />
-      </div>
-      <button type="submit" style={buttonStyle}>
-        Submit
-      </button>
-      <p style={pStyle}>
-        <strong>Current Data:</strong> {JSON.stringify(formData, null, 2)}
-      </p>
-    </form>
+    </div>
   );
 }
 
