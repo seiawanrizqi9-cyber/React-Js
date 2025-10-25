@@ -12,7 +12,7 @@ const DOMAccess = () => {
   return (
     <div className="p-6 max-w-md mx-auto border rounded-lg shadow bg-white dark:bg-gray-800">
       <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">
-        Contoh useRef untuk Fokus Input
+        Tugas 1: Akses DOM dengan useRef
       </h2>
 
       <input
